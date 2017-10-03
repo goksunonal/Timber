@@ -59,3 +59,5 @@ namandwivedi14@gmail.com
 >You should have received a copy of the GNU General Public License along with this app. If not, see <https://www.gnu.org/licenses/>.
 
 Burak Kuyucu
+
+Sena Selışık
