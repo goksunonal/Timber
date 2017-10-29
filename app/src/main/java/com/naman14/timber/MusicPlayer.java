@@ -662,6 +662,16 @@ public class MusicPlayer {
             }
         }
     }
+    public static void deleteFromQueue(long sourceId){
+        if (mService==null){
+            return;
+        } try {
+            mService.removeTrack(sourceId);
+        } catch (final RemoteException ignored) {
+        }
+
+
+    }
 
     public static void addToQueue(final Context context, final long[] list, long sourceId,
                                   IdType sourceType) {
