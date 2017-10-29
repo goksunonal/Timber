@@ -55,6 +55,7 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
     private int lastPosition = -1;
     private String ateKey;
     private long playlistId;
+    private ItemHolder beforeItemHolder = null;
 
     public SongsListAdapter(AppCompatActivity context, List<Song> arraylist, boolean isPlaylistSong, boolean animate) {
         this.arraylist = arraylist;
@@ -80,6 +81,7 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
 
     @Override
     public void onBindViewHolder(ItemHolder itemHolder, int i) {
+        beforeItemHolder=itemHolder;
         Song localItem = arraylist.get(i);
 
         itemHolder.title.setText(localItem.title);
@@ -100,7 +102,6 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
             itemHolder.visualizer.setVisibility(View.GONE);
         }
 
-
         if (animate && isPlaylist && PreferencesUtility.getInstance(mContext).getAnimations()) {
             if (TimberUtils.isLollipop())
                 setAnimation(itemHolder.itemView, i);
@@ -110,9 +111,7 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
             }
         }
 
-
         setOnPopupMenuListener(itemHolder, i);
-
     }
 
     public void setPlaylistId(long playlistId) {
@@ -229,10 +228,12 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
             this.popupMenu = (ImageView) view.findViewById(R.id.popup_menu);
             visualizer = (MusicVisualizer) view.findViewById(R.id.visualizer);
             view.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View v) {
+
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -244,12 +245,15 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
                         public void run() {
                             notifyItemChanged(currentlyPlayingPosition);
                             notifyItemChanged(getAdapterPosition());
+
+                            if (isPlaylist && beforeItemHolder!=null) {
+                                beforeItemHolder.title.setTextColor(Color.WHITE);
+                                beforeItemHolder.visualizer.setVisibility(View.GONE);
+                            }
                         }
                     }, 50);
                 }
             }, 100);
-
-
         }
 
     }
