@@ -126,6 +126,9 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                                 long[] deleteIds = {arraylist.get(position).id};
                                 TimberUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, BaseQueueAdapter.this, position);
                                 break;
+                            case R.id.popup_song_delete_from_queue:
+                                MusicPlayer.deleteFromQueue(arraylist.get(position).id);
+                                break;
                         }
                         return false;
                     }

@@ -2167,12 +2167,12 @@ public class MusicService extends Service {
                 notifyChange(QUEUE_CHANGED);
             }
 
-            if (mPlayPos < 0) {
-                mPlayPos = 0;
-                openCurrentAndNext();
-                play();
-                notifyChange(META_CHANGED);
-            }
+         //   if (mPlayPos < 0) {
+          //      mPlayPos = 0;
+              //  openCurrentAndNext();
+               // play();
+             //   notifyChange(META_CHANGED);
+          //  }
         }
     }
 

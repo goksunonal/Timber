@@ -155,5 +155,7 @@
     <string name="lastfm_loged_in">Logged in as %s</string>
 
     <string name="cancel">Cancel</string>
+    <string name="popup_song_delete_from_queue">Delete From Queue</string>
+    <string name="action_Delete_all_Queue">Clear Queue</string>
 
 </resources>
