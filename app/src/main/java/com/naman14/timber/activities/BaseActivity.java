@@ -93,6 +93,7 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
     @Override
     protected void onStop() {
         super.onStop();
+        MusicService.mNotifyMode=0;
 
 
     }
@@ -118,6 +119,8 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
 
     @Override
     protected void onDestroy() {
+        MusicService.mNotifyMode=0;
+
         super.onDestroy();
         // Unbind from the service
         if (mToken != null) {

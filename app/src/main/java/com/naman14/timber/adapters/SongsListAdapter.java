@@ -171,7 +171,7 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
                                 TimberUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, SongsListAdapter.this, position);
                                 break;
                             case R.id.popup_song_delete_from_queue:
-                                MusicPlayer.deleteFromQueue(arraylist.get(position).id);
+                                MusicPlayer.deleteFromQueue(arraylist.get(position).id, SongsListAdapter.this, position);
                                 break;
                         }
                         return false;

@@ -187,7 +187,7 @@ public class MusicService extends Service {
     private boolean mServiceInUse = false;
     private boolean mIsSupposedToBePlaying = false;
     private long mLastPlayedTime;
-    private int mNotifyMode = NOTIFY_MODE_NONE;
+    public static int mNotifyMode = NOTIFY_MODE_NONE;///
     private long mNotificationPostTime = 0;
     private boolean mQueueIsSaveable = true;
     private boolean mPausedByTransientLossOfFocus = false;

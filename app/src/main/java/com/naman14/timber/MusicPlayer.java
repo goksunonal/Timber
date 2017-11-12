@@ -30,10 +30,15 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.naman14.timber.dataloaders.SongLoader;
 import com.naman14.timber.helpers.MusicPlaybackTrack;
+import com.naman14.timber.utils.TimberUtils;
 import com.naman14.timber.utils.TimberUtils.IdType;
 
 import java.util.Arrays;
@@ -662,11 +667,12 @@ public class MusicPlayer {
             }
         }
     }
-    public static void deleteFromQueue(long sourceId){
+    public static void deleteFromQueue(long sourceId, final RecyclerView.Adapter adapter, final int pos){
         if (mService==null){
             return;
-        } try {
-            mService.removeTrack(sourceId);
+        } try{
+                            mService.removeTrack(sourceId);
+                            adapter.notifyItemRemoved(pos);
         } catch (final RemoteException ignored) {
         }
 
