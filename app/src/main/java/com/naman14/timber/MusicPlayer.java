@@ -662,17 +662,16 @@ public class MusicPlayer {
     public static void clearQueue() {
         if (mService!=null) {
             try {
-                mService.removeTracks(0, Integer.MAX_VALUE);
+                mService.removeTracks(0, mService.getQueueSize());
             } catch (final RemoteException ignored) {
             }
         }
     }
-    public static void deleteFromQueue(long sourceId, final RecyclerView.Adapter adapter, final int pos){
+    public static void deleteFromQueue(long sourceId){
         if (mService==null){
             return;
         } try{
-                            mService.removeTrack(sourceId);
-                            adapter.notifyItemRemoved(pos);
+                mService.removeTrack(sourceId);
         } catch (final RemoteException ignored) {
         }
 
